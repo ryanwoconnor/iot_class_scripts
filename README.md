@@ -14,6 +14,7 @@ echo "[DEFAULT]" | tee -a splunk_server.conf
 echo "url = " | tee -a splunk_server.conf
 echo "token = " | tee -a splunk_server.conf
 echo "owner = " | tee -a splunk_server.conf
+```
 
 token = Your HTTP Event Collector Token
 url = The URL for the HTTP Event Collector Running in Splunk
