@@ -6,6 +6,8 @@ import time
 import requests
 import socket
 import configparser
+import os
+import sys
 
 def get_cpu_temperature():
     process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
@@ -16,20 +18,19 @@ def get_cpu_temperature():
 def main():
     cpu_temperature = get_cpu_temperature()
     cpu_usage = psutil.cpu_percent()
-#    disk = psutil.disk_usage('/')
-#    disk_total = disk.total / 2**30     # GiB.
-#    disk_used = disk.used / 2**30
-#    disk_free = disk.free / 2**30
-#    disk_percent_used = disk.percent
 
     config = configparser.ConfigParser()
-    config.read('splunk_server.conf')
+    config.read(os.path.join(sys.path[0], 'splunk_server.conf'))
 
     try:
         authHeader={'Authorization': 'Splunk '+config['DEFAULT']['token']}
-        url = config['DEFAULT']['url']
+        print(authHeader)
+	url = config['DEFAULT']['url']
+        print(url)
         jsonDict = {'host': str(socket.gethostname()), 'sourcetype': 'system_info', 'event': 'metric', 'fields':{'cpu_temp':str(cpu_temperature),'_value':str(cpu_temperature),'metric_name':'cpu_temperature', 'owner':config['DEFAULT']['owner']}}
+        print(jsonDict)
         r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
+    	print(str(r))
     except:
         print("ERROR")
 
