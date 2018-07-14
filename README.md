@@ -16,6 +16,10 @@ echo "token = " | tee -a splunk_server.conf
 echo "owner = " | tee -a splunk_server.conf
 ```
 
+Once you've created the file, fill in the approprate sections. Below are definitions for each key. 
+
 token = Your HTTP Event Collector Token
+
 url = The URL for the HTTP Event Collector Running in Splunk
+
 owner = The owner for the current device. If this doesn't apply, simply leave it blank.
