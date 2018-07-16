@@ -14,10 +14,15 @@ def get_cpu_temperature():
     output, _error = process.communicate()
     return float(output[output.index('=') + 1:output.rindex("'")])
 
+def get_core_voltage():
+    process = Popen(['vcgencmd', 'measure_volts', 'core'], stdout=PIPE)
+    output, _error = process.communicate()
+    return float(output[output.index('=') + 1:output.rindex("V")])
 
 def main():
     cpu_temperature = get_cpu_temperature()
     cpu_usage = psutil.cpu_percent()
+    core_voltage=get_core_voltage()
 
     config = configparser.ConfigParser()
     config.read(os.path.join(sys.path[0], 'splunk_server.conf'))
@@ -31,6 +36,11 @@ def main():
         print(jsonDict)
         r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
     	print(str(r))
+
+        jsonDict = {'host': str(socket.gethostname()), 'sourcetype': 'system_info', 'event': 'metric', 'fields':{'core_voltage':str(core_voltage),'_value':str(core_voltage),'metric_name':'core_voltage', 'owner':config['DEFAULT']['owner']}}
+        r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
+        print(str(r))
+
     except:
         print("ERROR")
 
