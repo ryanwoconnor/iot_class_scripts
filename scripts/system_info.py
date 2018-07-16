@@ -25,7 +25,7 @@ def main():
     core_voltage=get_core_voltage()
 
     config = configparser.ConfigParser()
-    config.read(os.path.join(sys.path[0], 'splunk_server.conf'))
+    config.read(os.path.join(sys.path[0], 'local/splunk_server.conf'))
 
     try:
         authHeader={'Authorization': 'Splunk '+config['DEFAULT']['token']}

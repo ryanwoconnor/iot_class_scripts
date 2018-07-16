@@ -13,7 +13,7 @@ GPIO.setup(channel, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def alert(ev=None):
         config = configparser.ConfigParser()
-        config.read(os.path.join(sys.path[0], 'splunk_server.conf'))
+        config.read(os.path.join(sys.path[0], 'local/splunk_server.conf'))
         authHeader={'Authorization': 'Splunk '+config['DEFAULT']['token']}
         url = config['DEFAULT']['url']
 
