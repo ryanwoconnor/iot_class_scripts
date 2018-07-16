@@ -1,16 +1,26 @@
 import RPi.GPIO as GPIO
 import time
 import requests
+import socket
+import configparser
+import os
+import sys
+import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.IN)
 
+config = configparser.ConfigParser()
+config.read(os.path.join(sys.path[0], 'local/splunk_server.conf'))
+
+authHeader={'Authorization': 'Splunk '+config['DEFAULT']['token']}
+url = config['DEFAULT']['url']
+
 try:
     i=GPIO.input(16)
-    authHeader={'Authorization': 'Splunk 8ce81b64-f5d8-4753-9d6e-f9bfc58ba420'}
-    url='http://l1barcv-rwo0601.business.uconn.edu:8090/services/collector/event'
-    jsonDict = {'host': 'pi_aquaponics1', 'event': 'metric', 'fields':{'water_motion':str(i),'_value':str(i),'metric_name':'water_motion'}}
+    jsonDict = {'host': str(socket.gethostname()), 'event': 'metric', 'fields':{'water_motion':str(i),'_value':str(i),'metric_name':'water_motion'}}
     r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
+    print(r.text)
 except:
     GPIO.cleanup()
 
