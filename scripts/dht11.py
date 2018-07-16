@@ -24,8 +24,8 @@ url = config['DEFAULT']['url']
 
 result = instance.read()
 
-jsonDict = '{"host": "'+str(socket.gethostname())+'", "event":"metric","fields":{"humidity":'+str(result.humidity)+',"_value":'+str(result.humidity)+',"metric_name":"humidity"}}{"host": "'+str(socket.gethostname())+'", "event":"metric","fields":{"temp_c":'+str(result.temperature)+',"_value":'+str(result.temperature)+',"metric_name":"temp_c"}}'
-
+jsonDict = '{"host": "'+str(socket.gethostname())+'", "sourcetype": "dht11", "event":"metric","fields":{"humidity":'+str(result.humidity)+',"_value":'+str(result.humidity)+',"metric_name":"humidity"}}{"host": "'+str(socket.gethostname())+'", "sourcetype": "dht11", "event":"metric","fields":{"temp_c":'+str(result.temperature)+',"_value":'+str(result.temperature)+',"metric_name":"temp_c"}}'
+print(jsonDict)
 if result.is_valid():
         try:
             r = requests.post(url,headers=authHeader,data=jsonDict,verify=False)
