@@ -11,9 +11,6 @@ import time
 import StringIO
 
 
-#ip = '192.168.1.31'
-#host='tplink_aquaponics01'
-
 def recv_timeout(the_socket,timeout=2):
     #make socket non blocking
     the_socket.setblocking(0)
