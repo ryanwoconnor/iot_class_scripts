@@ -29,4 +29,5 @@ url = config['DEFAULT']['url']
 jsonDict = {'host': str(socket.gethostname()), 'sourcetype': 'guva-s12sd', 'event': 'metric', 'fields':{'uv_index':str(mcp.read_adc(2)),'_value':str(mcp.read_adc(2)),'metric_name':'uv_index'}}
 
 r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
+print(jsonDict)
 print r.text
