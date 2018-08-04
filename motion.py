@@ -18,8 +18,9 @@ url = config['DEFAULT']['url']
 
 try:
     i=GPIO.input(16)
-    jsonDict = {'host': str(socket.gethostname()), 'event': 'metric', 'fields':{'water_motion':str(i),'_value':str(i),'metric_name':'water_motion'}}
+    jsonDict = '{"host": "'+str(socket.gethostname())+'", "event": "metric", "fields":{"water_motion":'+str(i)+',"_value":'+str(i)+',"metric_name":"water_motion"}}'
     r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
+    print(jsonDict)
     print(r.text)
 except:
     GPIO.cleanup()
