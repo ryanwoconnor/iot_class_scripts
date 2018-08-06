@@ -1,0 +1,15 @@
+s3:
+    access_key_id: ''
+    secret_access_key: ''
+    bucket_name: ''
+
+image_settings:
+    horizontal_res: 1280
+    vertical_res: 720
+    file_name: '_cam_aquaponics04'
+    file_extension: '.jpg'
+    folder_name: 'images'
+    awb_mode: 'auto'
+    photo_interval: 60
+
+debug: true
