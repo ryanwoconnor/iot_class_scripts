@@ -6,10 +6,20 @@ import os
 import tinys3
 import yaml
 import sys
+import time
+import requests
+import socket
+import configparser
+
 
 # testing
 with open(os.path.join(sys.path[0])+"/"+"local/s3config.yml", 'r') as ymlfile:
     cfg = yaml.load(ymlfile)
+
+config = configparser.ConfigParser()
+config.read(os.path.join(sys.path[0], 'local/splunk_server.conf'))
+authHeader={'Authorization': 'Splunk '+config['DEFAULT']['logtoken']}
+url = config['DEFAULT']['url']
 
 
 # photo props
@@ -37,12 +47,28 @@ filepath = image_folder + '/' + datetime.now().strftime("%Y-%m-%d-%H.%M.%S") +fi
 
 if cfg['debug'] == True:
     print '[debug] Taking photo and saving to path ' + filepath
+    try:
+        event = str("Taking photo and saving to path " + filepath)
+        jsonDict = '{"host":"'+str(socket.gethostname())+'", "sourcetype": "timelapse_s3_upload", "event": "'+str(event)+'"}'
+        print(jsonDict)
+        r = requests.post(url,headers=authHeader,data=jsonDict,verify=False)
+        print(r.text)
+    except:
+        print('ERROR')
 
 # Take Photo
 camera.capture(filepath)
-    
+
 if cfg['debug'] == True:
     print '[debug] Uploading ' + filepath + ' to s3'
+    try:
+	event = str("Uploading "+filepath+" to s3")
+	jsonDict = '{"host":"'+str(socket.gethostname())+'", "sourcetype": "timelapse_s3_upload", "event": "'+str(event)+'"}'
+        print(jsonDict)
+	r = requests.post(url,headers=authHeader,data=jsonDict,verify=False)
+        print(r.text)
+    except:
+        print('ERROR')
 
 # Upload to S3
 conn = tinys3.Connection(cfg['s3']['access_key_id'], cfg['s3']['secret_access_key'])
@@ -55,4 +81,3 @@ conn.upload(filepath, f, cfg['s3']['bucket_name'],
     # Cleanup
 if os.path.exists(filepath):
     os.remove(filepath)
-
