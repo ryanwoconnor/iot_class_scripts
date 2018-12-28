@@ -34,6 +34,8 @@ image_folder = cfg['image_settings']['folder_name']
 camera = picamera.PiCamera()
 camera.resolution = (image_width, image_height)
 camera.awb_mode = cfg['image_settings']['awb_mode']
+camera.vflip = True
+camera.hflip = True
 
 # verify image folder exists and create if it does not
 if not os.path.exists(image_folder):
@@ -43,7 +45,11 @@ if not os.path.exists(image_folder):
 sleep(2)
 
 # Build filename string
-filepath = image_folder + '/' + datetime.now().strftime("%Y-%m-%d-%H.%M.%S") +file_name + file_extension
+filepath = datetime.now().strftime("%Y-%m-%d-%H.%M.%S") +file_name + file_extension
+
+#Old Style of Logging. Disabled use of "image_folder" for compatibility with timelapse github repo https://github.com/lukemcfarlane/timelapse_from_s3
+#filepath = image_folder + '/' + datetime.now().strftime("%Y-%m-%d-%H.%M.%S") +file_name + file_extension
+
 
 if cfg['debug'] == True:
     print '[debug] Taking photo and saving to path ' + filepath
@@ -58,7 +64,7 @@ if cfg['debug'] == True:
 
 # Take Photo
 camera.capture(filepath)
-
+    
 if cfg['debug'] == True:
     print '[debug] Uploading ' + filepath + ' to s3'
     try:
