@@ -32,12 +32,12 @@ def main():
         print(authHeader)
 	url = config['DEFAULT']['url']
         print(url)
-        jsonDict = {'host': str(socket.gethostname()), 'sourcetype': 'system_info', 'event': 'metric', 'fields':{'cpu_temp':str(cpu_temperature),'_value':str(cpu_temperature),'metric_name':'cpu_temperature', 'owner':config['DEFAULT']['owner']}}
+        jsonDict = {'host': str(socket.gethostname()), 'sourcetype': 'system_info', 'event': 'metric', 'fields':{'cpu_temp':cpu_temperature,'_value':cpu_temperature,'metric_name':'cpu_temperature', 'owner':config['DEFAULT']['owner']}}
         print(jsonDict)
         r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
     	print(str(r))
 
-        jsonDict = {'host': str(socket.gethostname()), 'sourcetype': 'system_info', 'event': 'metric', 'fields':{'core_voltage':str(core_voltage),'_value':str(core_voltage),'metric_name':'core_voltage', 'owner':config['DEFAULT']['owner']}}
+        jsonDict = {'host': str(socket.gethostname()), 'sourcetype': 'system_info', 'event': 'metric', 'fields':{'core_voltage':core_voltage,'_value':core_voltage,'metric_name':'core_voltage', 'owner':config['DEFAULT']['owner']}}
         r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
         print(str(r))
 
