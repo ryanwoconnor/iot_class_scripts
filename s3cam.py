@@ -68,7 +68,7 @@ camera.capture(filepath)
 if cfg['debug'] == True:
     print '[debug] Uploading ' + filepath + ' to s3'
     try:
-	event = str("Uploading "+filepath+" to s3")
+        event = str("Uploading image=https://s3.amazonaws.com/"+cfg['s3']['bucket_name']+"/"+filepath+" to s3")
 	jsonDict = '{"host":"'+str(socket.gethostname())+'", "sourcetype": "timelapse_s3_upload", "event": "'+str(event)+'"}'
         print(jsonDict)
 	r = requests.post(url,headers=authHeader,data=jsonDict,verify=False)
