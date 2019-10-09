@@ -1,6 +1,8 @@
-# iot_class_scripts
+# IoT Scripts
 
-This package is meant for OPIM 4895. Here we will be developing a suite of scripts for the Raspberry Pi to be used in this IoT Course. 
+Authors: Hunter Mason, Ryan O'Connor
+
+This package is a suite of scripts to be used with the Raspberry Pi. Initially this was intended to be used for Ryan's IoT Class, but it has grown and expanded to also included several useful scripts for Atlas Scientific Sensors that have been co-developed with Hunter Mason from Seattle University. 
 
 
 ## Configuring Package for Splunk
@@ -21,6 +23,7 @@ url = The URL for the HTTP Event Collector Running in Splunk
 
 owner = The owner for the current device. If this doesn't apply, simply leave it blank.
 
+index = The index you want your data to reside in. 
 
 ## Configuring TP-Link Script
 
