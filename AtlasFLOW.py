@@ -75,8 +75,8 @@ class AtlasI2C:
                         r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
                         jsonDict = {'host': str(socket.gethostname()), 'event': 'metric', 'index': index, 'fields':{'Flow_Rate':str(values[1]),'_value':str(values[1]),'metric_name':'Flow_Rate'}}
                         r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
-                        print(jsonDict)
-                        print(r.text)
+                        #print(jsonDict)
+                        #print(r.text)
                         return "Command succeeded " + ''.join(char_list)     # convert the char list to a string and returns it
                 else:
                         return "Error " + str(res[0])

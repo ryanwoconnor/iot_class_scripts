@@ -19,7 +19,7 @@ class AtlasI2C:
 	long_timeout = 2         	# the timeout needed to query readings and calibrations
 	short_timeout = .5         	# timeout for regular commands
 	default_bus = 1         	# the default bus for I2C on the newer Raspberry Pis, certain older boards use bus 0
-	default_address = 99     	# the default address for the sensor
+	default_address = 97     	# the default address for the sensor
 	current_addr = default_address
 
 	def __init__(self, address=default_address, bus=default_bus):
@@ -74,8 +74,8 @@ class AtlasI2C:
 			value= ''.join(char_list_edit)
 			jsonDict = {'host': str(socket.gethostname()), 'event': 'metric', 'index': index, 'fields':{'DissOxy':str(value),'_value':str(value),'metric_name':'DissOxy'}}
 			r = requests.post(url,headers=authHeader,json=jsonDict,verify=False)
-			print(jsonDict)
-			print(r.text) 
+			#print(jsonDict)
+			#print(r.text) 
 			return "Command succeeded " + ''.join(char_list)     # convert the char list to a string and returns it
 		else:
 			return "Error " + str(res[0])
