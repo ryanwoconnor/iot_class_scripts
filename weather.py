@@ -30,7 +30,7 @@ try:
            pressure = round(pressure, 1)
            print("Pressure:",pressure)
            
-           jsonDict = {"host":"weatherstation01","event": {"Temperature":temp,"Humidity":humidity,"Pressure":pressure}}
+           jsonDict = {"host":"weatherstation01","sourcetype":"weather","event": {"Temperature":temp,"Humidity":humidity,"Pressure":pressure}}
            
            r = requests.post(url, headers=authHeader, json=jsonDict, verify=False)
            
