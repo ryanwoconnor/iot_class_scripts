@@ -9,7 +9,7 @@ import configparser
 config = configparser.ConfigParser()
 config.read(os.path.join(sys.path[0], 'local/splunk_server.conf'))
 
-authHeader={'Authorization': 'Splunk '+config['DEFAULT']['token']}
+authHeader={'Authorization': 'Splunk '+config['DEFAULT']['logtoken']}
 url = config['DEFAULT']['url'] 
 
 sense = SenseHat()
