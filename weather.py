@@ -30,7 +30,11 @@ try:
            pressure = round(pressure, 1)
            print("Pressure:",pressure)
            
-           jsonDict = {"host":"weatherstation01","sourcetype":"weather","event": {"Temperature":temp,"Humidity":humidity,"Pressure":pressure}}
+           sense = SenseHat()
+           north = sense.get_compass()
+           print("North: %s" % north)
+            
+           jsonDict = {"host":"weatherstation01","sourcetype":"weather","event": {"Temperature":temp,"Humidity":humidity,"Pressure":pressure, "north": north}}
            
            r = requests.post(url, headers=authHeader, json=jsonDict, verify=False)
            
