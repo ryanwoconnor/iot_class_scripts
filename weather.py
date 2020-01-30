@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from sense_hat import SenseHat
 import time
+import os
 import sys
 import requests
 import json
