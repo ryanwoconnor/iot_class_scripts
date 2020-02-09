@@ -36,3 +36,29 @@ cp tplink.conf local/
 ```
 
 Once you have the file in place, created a comma separated entry on each line for IP Address and hostname as shown in the file. 
+
+
+
+## Building Projects
+
+### Sense HAT
+#### Step 1:
+<img src="images/SenseHat/1.jpg" width="300" height="225"></img>
+#### Step 2:
+<img src="images/SenseHat/2.jpg" width="300" height="225"></img>
+#### Step 3:
+<img src="images/SenseHat/3.jpg" width="300" height="225"></img>
+#### Step 4:
+<img src="images/SenseHat/4.jpg" width="300" height="225"></img>
+#### Step 5:
+<img src="images/SenseHat/5.jpg" width="300" height="225"></img>
+#### Step 6:
+<img src="images/SenseHat/6.jpg" width="300" height="225"></img>
+#### Step 7:
+<img src="images/SenseHat/7.jpg" width="300" height="225"></img>
+#### Step 8:
+<img src="images/SenseHat/8.jpg" width="300" height="225"></img>
+#### Step 9:
+<img src="images/SenseHat/9.jpg" width="300" height="225"></img>
+#### Step 10:
+<img src="images/SenseHat/10.jpg" width="300" height="225"></img>
