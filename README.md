@@ -64,7 +64,7 @@ WantedBy=multi-user.target
 
 #### Add a new service file:
 
-`vim /etc/systemd/system/myservice.service`
+`vim /etc/systemd/system/sensehat-toggle.service`
 
 #### Reload systemctl daemon
 
@@ -73,14 +73,14 @@ WantedBy=multi-user.target
 
 #### Start service on boot
 
-`systemctl enable myservice`
+`systemctl enable sensehat-toggle`
 
 
 ### Useful commands for services
 
-`systemctl restart sensehat-toggle.service`
-`systemctl start sensehat-toggle.service`
-`systemctl stop sensehat-toggle.service`
+`systemctl restart sensehat-toggle`
+`systemctl start sensehat-toggle`
+`systemctl stop sensehat-toggle`
 
 
 ### Using the Sense HAT
