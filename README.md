@@ -41,27 +41,46 @@ Once you have the file in place, created a comma separated entry on each line fo
 
 ## Building Projects
 
-### Adding a script as a service
+### Example Service
+
+```
+[Unit]
+Description=My Toggle Button Service for Sense HAT
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u /home/pi/iot_class_scripts/toggle.py
+WorkingDirectory=/home/pi/iot_class_scripts/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Working with service
 
 #### Add a new service file:
 
-vim /etc/systemd/system/myservice.service
+`vim /etc/systemd/system/myservice.service`
 
 #### Reload systemctl daemon
 
-systemctl daemon-reload
+`systemctl daemon-reload`
 
 
 #### Start service on boot
 
-systemctl enable myservice
+`systemctl enable myservice`
 
 
-### Useful commands
+### Useful commands for services
 
-systemctl restart sensehat-toggle.service
-systemctl start sensehat-toggle.service
-systemctl stop sensehat-toggle.service
+`systemctl restart sensehat-toggle.service`
+`systemctl start sensehat-toggle.service`
+`systemctl stop sensehat-toggle.service`
 
 
 ### Using the Sense HAT
