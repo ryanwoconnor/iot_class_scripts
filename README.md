@@ -70,17 +70,21 @@ WantedBy=multi-user.target
 
 `systemctl daemon-reload`
 
-
 #### Start service on boot
 
 `systemctl enable sensehat-toggle`
 
+#### Useful commands for services
 
-### Useful commands for services
-
+Restart Service
 `systemctl restart sensehat-toggle`
+
+Start Service
 `systemctl start sensehat-toggle`
+
+Stop Service
 `systemctl stop sensehat-toggle`
+
 
 
 ### Using the Sense HAT
