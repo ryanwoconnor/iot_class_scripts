@@ -41,7 +41,33 @@ Once you have the file in place, created a comma separated entry on each line fo
 
 ## Building Projects
 
-### Sense HAT
+### Adding a script as a service
+
+#### Add a new service file:
+
+vim /etc/systemd/system/myservice.service
+
+#### Reload systemctl daemon
+
+systemctl daemon-reload
+
+
+#### Start service on boot
+
+systemctl enable myservice
+
+
+### Useful commands
+
+systemctl restart sensehat-toggle.service
+systemctl start sensehat-toggle.service
+systemctl stop sensehat-toggle.service
+
+
+### Using the Sense HAT
+
+This Sensor can be used with weather.py and toggle.py
+
 #### Step 1:
 <img src="images/SenseHat/1.jpg" width="300" height="225"></img>
 #### Step 2:
