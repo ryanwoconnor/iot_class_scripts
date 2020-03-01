@@ -47,9 +47,11 @@ while True:
     try:
         PLC.connect('192.168.1.200', 0, 1) #Connect using default port argument 102
         status = PLC.get_cpu_state()
+    except KeyboardInterrupt:
+        break
     except:
         print("Could not connect")
-
+        continue
     if status == "S7CpuStatusRun":
 
         config = configparser.ConfigParser()
